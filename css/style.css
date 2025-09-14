@@ -1,0 +1,84 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  background: #ecf0f1;
+  color: #2d2d2d;
+  line-height: 1.6;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+.header {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+.header .profile-img {
+  border-radius: 50%;
+  border: 3px solid #3498db;
+  width: 120px;
+  height: 120px;
+}
+.header h1 {
+  margin: 10px 0;
+}
+.header .tagline {
+  font-size: 1.1rem;
+  color: #ecf0f1;
+}
+
+section {
+  margin: 40px 0;
+}
+section h2 {
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+section ul {
+  list-style: none;
+  padding: 0;
+}
+section ul li {
+  margin: 8px 0;
+}
+
+.portfolio .projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+.portfolio .projects .project-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+.portfolio .projects .project-card:hover {
+  transform: translateY(-5px);
+}
+@media (max-width: 768px) {
+  .portfolio .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .portfolio .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer {
+  background: #2c3e50;
+  color: #ecf0f1;
+  text-align: center;
+  padding: 15px;
+}
+
+/*# sourceMappingURL=style.css.map */

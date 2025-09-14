@@ -1,0 +1,115 @@
+// Variabel warna
+$primary: #2c3e50;
+$secondary: #3498db;
+$light: #ecf0f1;
+$dark: #2d2d2d;
+
+// Mixin untuk responsive
+@mixin responsive($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $breakpoint == mobile {
+    @media (max-width: 480px) { @content; }
+  }
+}
+
+// Global style
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  background: $light;
+  color: $dark;
+  line-height: 1.6;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+// Header
+.header {
+  background: $primary;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+
+  .profile-img {
+    border-radius: 50%;
+    border: 3px solid $secondary;
+    width: 120px;
+    height: 120px;
+  }
+
+  h1 {
+    margin: 10px 0;
+  }
+
+  .tagline {
+    font-size: 1.1rem;
+    color: $light;
+  }
+}
+
+// Section umum
+section {
+  margin: 40px 0;
+
+  h2 {
+    border-bottom: 2px solid $secondary;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 8px 0;
+    }
+  }
+}
+
+// Portfolio grid
+.portfolio {
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+
+    .project-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+  }
+
+  @include responsive(tablet) {
+    .projects {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include responsive(mobile) {
+    .projects {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Footer
+.footer {
+  background: $primary;
+  color: $light;
+  text-align: center;
+  padding: 15px;
+}
