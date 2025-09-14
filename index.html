@@ -5,21 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio Saya</title>
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f6f8fa;
+      }
+      .header-fullscreen {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #4f8cff 60%, #a7e9af 100%);
+        color: #fff;
+        position: relative;
+        text-align: center;
+      }
+      .header-fullscreen img {
+        border-radius: 50%;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        margin-bottom: 24px;
+        border: 6px solid #fff;
+      }
+      .header-fullscreen h1 {
+        font-size: 2.8rem;
+        margin-bottom: 12px;
+        letter-spacing: 2px;
+      }
+      .header-fullscreen .tagline {
+        font-size: 1.3rem;
+        margin-bottom: 32px;
+        font-weight: 500;
+      }
+      .scroll-down {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.2rem;
+        animation: bounce 1.5s infinite;
+        color: #fff;
+        cursor: pointer;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        50% {
+          transform: translateY(12px) translateX(-50%);
+        }
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s, transform 0.8s;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      section.container {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+        margin: 32px auto;
+        padding: 32px 24px;
+        max-width: 700px;
+      }
+      .contact a {
+        color: #4f8cff;
+        text-decoration: none;
+      }
+      .projects {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .project-card {
+        background: #eaf6ff;
+        border-radius: 10px;
+        padding: 18px 24px;
+        flex: 1 1 180px;
+        box-shadow: 0 2px 8px rgba(79, 140, 255, 0.08);
+        font-weight: 500;
+        text-align: center;
+        transition: transform 0.2s;
+      }
+      .project-card:hover {
+        transform: translateY(-6px) scale(1.04);
+        background: #d0eaff;
+      }
+      @media (max-width: 600px) {
+        .header-fullscreen h1 {
+          font-size: 2rem;
+        }
+        section.container {
+          padding: 18px 8px;
+        }
+        .projects {
+          flex-direction: column;
+        }
+      }
+    </style>
   </head>
   <body>
-    <header class="header">
-      <div class="container">
-        <img
-          src="Pengembang.jpg"
-          alt="Foto Pengembang"
-          style="width: 300px; display: block; margin: auto"
-        />
-        <h1>Nama Anda</h1>
-        <p class="tagline">Web Developer | Designer | Programmer</p>
+    <header class="header-fullscreen">
+      <img src="Pengembang.jpg" alt="Foto Pengembang" />
+      <h1>Nama Anda</h1>
+      <p class="tagline">Web Developer | Designer | Programmer</p>
+      <div
+        class="scroll-down"
+        onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})"
+      >
+        ↓ Scroll untuk melihat profil
       </div>
     </header>
 
-    <section class="about container">
+    <section class="about container fade-in">
       <h2>Tentang Saya</h2>
       <p>
         Saya adalah seorang developer dengan minat pada web, mobile, dan
@@ -35,7 +142,7 @@
       </ul>
     </section>
 
-    <section class="education container">
+    <section class="education container fade-in">
       <h2>Riwayat Pendidikan</h2>
       <ul>
         <li>S1 - Teknik Informatika, Universitas X (2020 - 2024)</li>
@@ -43,7 +150,7 @@
       </ul>
     </section>
 
-    <section class="experience container">
+    <section class="experience container fade-in">
       <h2>Pengalaman Kerja</h2>
       <ul>
         <li>Intern Web Developer - PT Teknologi (2023)</li>
@@ -51,7 +158,7 @@
       </ul>
     </section>
 
-    <section class="skills container">
+    <section class="skills container fade-in">
       <h2>Keahlian</h2>
       <ul>
         <li>HTML, CSS, JavaScript</li>
@@ -60,7 +167,7 @@
       </ul>
     </section>
 
-    <section class="certificates container">
+    <section class="certificates container fade-in">
       <h2>Sertifikat</h2>
       <ul>
         <li>Dicoding - Frontend Developer</li>
@@ -68,7 +175,7 @@
       </ul>
     </section>
 
-    <section class="portfolio container">
+    <section class="portfolio container fade-in">
       <h2>Proyek</h2>
       <div class="projects">
         <div class="project-card">Proyek 1</div>
@@ -80,5 +187,20 @@
     <footer class="footer">
       <p>© 2025 Nama Anda. All rights reserved.</p>
     </footer>
+    <script>
+      // Animasi fade-in saat scroll
+      function revealOnScroll() {
+        const fadeEls = document.querySelectorAll(".fade-in");
+        const windowHeight = window.innerHeight;
+        fadeEls.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < windowHeight - 60) {
+            el.classList.add("visible");
+          }
+        });
+      }
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("DOMContentLoaded", revealOnScroll);
+    </script>
   </body>
 </html>
