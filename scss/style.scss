@@ -7,10 +7,13 @@ $dark: #2d2d2d;
 // Mixin untuk responsive
 @mixin responsive($breakpoint) {
   @if $breakpoint == tablet {
-    @media (max-width: 768px) { @content; }
-  }
-  @else if $breakpoint == mobile {
-    @media (max-width: 480px) { @content; }
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == mobile {
+    @media (max-width: 480px) {
+      @content;
+    }
   }
 }
 
@@ -67,23 +70,47 @@ body {
   img {
     border-radius: 50%;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-    width: 220px;
-    height: 220px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     margin-bottom: 24px;
     border: 6px solid #fff;
+    max-width: 100%;
+
+    @include responsive(mobile) {
+      width: 150px;
+      height: 150px;
+    }
   }
 
   h1 {
     font-size: 2.8rem;
     margin-bottom: 12px;
     letter-spacing: 2px;
+
+    @include responsive(tablet) {
+      font-size: 2.2rem;
+    }
+
+    @include responsive(mobile) {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
   }
 
   .tagline {
     font-size: 1.3rem;
     margin-bottom: 32px;
     font-weight: 500;
+
+    @include responsive(tablet) {
+      font-size: 1.1rem;
+    }
+
+    @include responsive(mobile) {
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
   }
 }
 
@@ -99,7 +126,8 @@ body {
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) translateX(-50%);
   }
   50% {
@@ -157,7 +185,7 @@ section.container {
       background: white;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s;
 
       &:hover {
@@ -179,6 +207,7 @@ section.container {
   }
 }
 
+// Modern project cards with flex layout
 .projects {
   display: flex;
   gap: 16px;
@@ -199,6 +228,11 @@ section.container {
     transform: translateY(-6px) scale(1.04);
     background: #d0eaff;
   }
+
+  @include responsive(mobile) {
+    flex: 1 1 100%;
+    margin-bottom: 12px;
+  }
 }
 
 // Footer
@@ -214,14 +248,15 @@ section.container {
   text-decoration: none;
 }
 
+// Additional responsive improvements
 @media (max-width: 600px) {
-  .header-fullscreen h1 {
-    font-size: 2rem;
-  }
   section.container {
-    padding: 18px 8px;
+    padding: 18px 12px;
+    margin: 16px auto;
   }
-  .projects {
-    flex-direction: column;
+
+  .scroll-down {
+    font-size: 1rem;
+    bottom: 24px;
   }
 }
