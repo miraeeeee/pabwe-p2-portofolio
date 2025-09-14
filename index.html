@@ -23,14 +23,48 @@
       <h2>Tentang Saya</h2>
       <p>
         Saya adalah seorang developer dengan minat pada web, mobile, dan
-        teknologi modern.
+        teknologi modern. Saya memiliki passion dalam menciptakan solusi digital
+        yang kreatif dan fungsional.
       </p>
+      <div class="biodata-grid">
+        <div class="biodata-item">
+          <h3>Nama Lengkap</h3>
+          <p>Raynal Haposan Napitupulu</p>
+        </div>
+        <div class="biodata-item">
+          <h3>Tanggal Lahir</h3>
+          <p>15 Januari 2002</p>
+        </div>
+        <div class="biodata-item">
+          <h3>Alamat</h3>
+          <p>Medan, Sumatera Utara</p>
+        </div>
+        <div class="biodata-item">
+          <h3>Status</h3>
+          <p>Mahasiswa Aktif</p>
+        </div>
+      </div>
       <ul class="contact">
         <li>
-          Email: <a href="mailto:emailanda@gmail.com">emailanda@gmail.com</a>
+          Email:
+          <a href="mailto:raynalnapitupulu@gmail.com"
+            >raynalnapitupulu@gmail.com</a
+          >
         </li>
         <li>
           WhatsApp: <a href="https://wa.me/628123456789">+62 812 3456 789</a>
+        </li>
+        <li>
+          GitHub:
+          <a href="https://github.com/raynalnapitupulu"
+            >github.com/raynalnapitupulu</a
+          >
+        </li>
+        <li>
+          LinkedIn:
+          <a href="https://linkedin.com/in/raynalnapitupulu"
+            >linkedin.com/in/raynalnapitupulu</a
+          >
         </li>
       </ul>
     </section>
@@ -38,26 +72,55 @@
     <section class="education container fade-in">
       <h2>Riwayat Pendidikan</h2>
       <ul>
-        <li>S1 - Teknik Informatika, Universitas X (2020 - 2024)</li>
-        <li>SMA Y - IPA (2017 - 2020)</li>
+        <li>
+          S1 - Teknik Informatika, Universitas Sumatera Utara (2020 - 2024)
+        </li>
+        <li>SMA Negeri 1 Medan - IPA (2017 - 2020)</li>
+        <li>SMP Negeri 15 Medan (2014 - 2017)</li>
       </ul>
     </section>
 
     <section class="experience container fade-in">
       <h2>Pengalaman Kerja</h2>
       <ul>
-        <li>Intern Web Developer - PT Teknologi (2023)</li>
+        <li>Intern Web Developer - PT Teknologi Digital Medan (2023)</li>
         <li>Freelance Frontend Developer (2022 - Sekarang)</li>
+        <li>Asisten Laboratorium - Laboratorium Komputer USU (2021 - 2023)</li>
+        <li>Project Leader - Tim Pengembangan Aplikasi Web USU (2022)</li>
       </ul>
     </section>
 
     <section class="skills container fade-in">
       <h2>Keahlian</h2>
-      <ul>
-        <li>HTML, CSS, JavaScript</li>
-        <li>React, Node.js</li>
-        <li>UI/UX Design</li>
-      </ul>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Frontend Development</h3>
+          <ul>
+            <li>HTML5, CSS3, JavaScript (ES6+)</li>
+            <li>React.js, Vue.js</li>
+            <li>Bootstrap, Tailwind CSS</li>
+            <li>SASS/SCSS</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Backend Development</h3>
+          <ul>
+            <li>Node.js, Express.js</li>
+            <li>PHP, Laravel</li>
+            <li>MySQL, MongoDB</li>
+            <li>RESTful API</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Tools & Design</h3>
+          <ul>
+            <li>Git & GitHub</li>
+            <li>Figma, Adobe XD</li>
+            <li>VS Code, WebStorm</li>
+            <li>UI/UX Design</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section class="certificates container fade-in">
@@ -81,19 +144,45 @@
       <p>© 2025 Raynal Haposan Napitupulu. All rights reserved.</p>
     </footer>
     <script>
-      // Animasi fade-in saat scroll
+      // Animasi fade-in saat scroll - diperbaiki agar bisa berulang
       function revealOnScroll() {
         const fadeEls = document.querySelectorAll(".fade-in");
         const windowHeight = window.innerHeight;
+
         fadeEls.forEach((el) => {
           const rect = el.getBoundingClientRect();
-          if (rect.top < windowHeight - 60) {
+          const elementTop = rect.top;
+          const elementVisible = 150;
+
+          // Cek apakah element sudah terlihat di viewport
+          if (elementTop < windowHeight - elementVisible) {
             el.classList.add("visible");
+          } else {
+            // Hapus class visible saat element keluar dari viewport
+            el.classList.remove("visible");
           }
         });
       }
-      window.addEventListener("scroll", revealOnScroll);
+
+      // Throttle function untuk performa yang lebih baik
+      function throttle(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
+      // Gunakan throttled version untuk scroll event
+      const throttledRevealOnScroll = throttle(revealOnScroll, 10);
+
+      window.addEventListener("scroll", throttledRevealOnScroll);
       window.addEventListener("DOMContentLoaded", revealOnScroll);
+      window.addEventListener("resize", revealOnScroll);
     </script>
   </body>
 </html>

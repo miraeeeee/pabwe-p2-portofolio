@@ -62,7 +62,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #4f8cff 60%, #a7e9af 100%);
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
   color: #fff;
   position: relative;
   text-align: center;
@@ -246,6 +246,111 @@ section.container {
 .contact a {
   color: #4f8cff;
   text-decoration: none;
+}
+
+// Biodata grid styling
+.biodata-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+
+  .biodata-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #4f8cff;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      color: #2c3e50;
+      margin: 0 0 8px 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      color: #34495e;
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+  }
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+// Skills grid styling
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin: 20px 0;
+
+  .skill-category {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 25px;
+    border-radius: 15px;
+    border-top: 4px solid #4f8cff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      color: #2c3e50;
+      margin: 0 0 15px 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 8px 0;
+        color: #34495e;
+        font-weight: 500;
+        border-bottom: 1px solid #dee2e6;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:before {
+          content: "▶";
+          color: #4f8cff;
+          margin-right: 8px;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
+  @include responsive(tablet) {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 }
 
 // Additional responsive improvements
